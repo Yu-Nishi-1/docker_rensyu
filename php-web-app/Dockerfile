@@ -10,8 +10,9 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends \
     libonig-dev \
     unzip \
     # ref https://qiita.com/vitway/items/660f9121a9c6afbf1047
-    # && docker-php-ext-install mbstring \ qiita見たらとりあえずあったので入れたが、php8.2-apacheでapt show composerしたらそもそもmustじゃなかったから不要と判断してコメントアウト。
+    # && docker-php-ext-install mbstring \ qiita見たらとりあえずあったので入れたが、php8.2-apacheでapt show composerしたらrecommendsにはいたがdependsじゃなかったから不要と判断してコメントアウト。
     # 要不要はqiitaとかzenじゃなくてapt showかapt cache dependsで判断する。
+    # 上記で判断したら、そもそもapt-get install -y --no-install-recommends composerでよかった。。後で試す。
     # ソフト格納先のインストール使用時のみのインデックスを削除
     && rm -rf /var/lib/apt/lists/*
 
