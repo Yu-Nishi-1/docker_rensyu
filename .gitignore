@@ -1,0 +1,5 @@
+php8-nginx-mysql8/
+php-web-app/container/composer.json
+php-web-app/iac/.terraform/
+php-web-app/iac/.terraform.lock.hcl
+php-web-app/iac/terraform.*

@@ -1,9 +1,0 @@
-services:
-  terraform:
-    image: hashicorp/terraform:latest
-    volumes:
-      - .:/workspace
-      - ~/.aws:/root/.aws:ro
-    environment:
-      - AWS_PROFILE=kosuke
-    working_dir: /workspace

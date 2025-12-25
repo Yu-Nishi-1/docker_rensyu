@@ -2,6 +2,7 @@ FROM php:8.2-apache
 
 COPY . /var/www/html
 
+
 # curlのみ試しで特定バージョン指定、他は最新をインストール
 # curlのバージョンはapt show curlで確認した。とりあえず、何か入れたいときはapt show [パッケージ名]で確認した
 RUN apt-get update -y && apt-get install -y --no-install-recommends \
