@@ -1,6 +1,9 @@
 FROM php:8.2-apache
 
-COPY . /var/www/html
+COPY ./src/. /var/www/html
+COPY ./composer.json /var/www/html
+ADD ./lib/test_dir_file.tar.gz /
+WORKDIR /var/www/html
 
 # curlのみ試しで特定バージョン指定、他は最新をインストール
 # curlのバージョンはapt show curlで確認した。とりあえず、何か入れたいときはapt show [パッケージ名]で確認した
@@ -24,7 +27,15 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && mv composer.phar /usr/local/bin/composer \
     && composer install
 
+EXPOSE 80/tcp
+
 #ENTRYPOINT ["php"]
-#CMD ["-a"]
+#CMD ["apache2-foreground"]
 
 VOLUME ["/var/www/html/storage"]
+
+# 環境変数設定例 変数をレイヤーに残したくない場合はENVで設定するとレイヤー扱いになるのでRUNで変数設定し、削除すること
+ENV PATH="${PATH}:/usr/local/custom/bin"
+RUN ADMIN_USER="secretkey" \
+    && echo $ADMIN_USER > ./user_name.txt \
+    && unset ADMIN_USER
