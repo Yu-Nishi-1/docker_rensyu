@@ -35,6 +35,7 @@ COPY --from=build /var/www/html /var/www/html
 COPY --from=build /data /data
 EXPOSE 80/tcp
 
+# コンテナのメインプロセスとして挙動を統一させたい場合はENTRYPOINTを指定。鍵括弧はシェルを介さずプロセスをPID1で起動したい場合(推奨)
 # ENTRYPOINT ["php"]
 # CMD ["apache2-foreground"]
 
