@@ -13,7 +13,7 @@
 │   ├── Dockerfile
 │   └── Gemfile
 └── php-web-app
-    ├── aws
+    ├── aws　ECSで構築するときが来たら最低限使えるように作成した。直接は使用しない。
     │   └── network.tf
     ├── composer.json
     ├── container
