@@ -28,12 +28,21 @@ ADD ./lib/test_dir_file.tar.gz /data
 WORKDIR /var/www/html
 
 FROM php:8.2-apache AS deploy
+
 LABEL version="1.0"
 LABEL description="PHP-Apache Laravel Environment"
 LABEL maintainer="sakamoto"
+
 COPY --from=build /var/www/html /var/www/html
 COPY --from=build /data /data
+
+# Docker内で80番ポート使用を宣言、ローカルから使うにはポートフォワードが必要
 EXPOSE 80/tcp
+
+RUN useradd www-user \
+    && chown www-user:www-user /var/www/html
+
+USER www-user
 
 # コンテナのメインプロセスとして挙動を統一させたい場合はENTRYPOINTを指定。鍵括弧はシェルを介さずプロセスをPID1で起動したい場合(推奨)
 # ENTRYPOINT ["php"]
@@ -43,6 +52,8 @@ EXPOSE 80/tcp
 
 # 環境変数設定例 変数をレイヤーに残したくない場合はENVで設定するとレイヤー扱いになるのでRUNで変数設定し、削除すること
 ENV PATH="${PATH}:/usr/local/custom/bin"
+
+# コンテナに残さないのが以下コマンドだがdocker history コンテナ名すると履歴が平文で残るため--secretかAWSの場合、Secret Managerを使うこと
 RUN ADMIN_USER="secretkey" \
     && echo $ADMIN_USER > ./user_name.txt \
     && unset ADMIN_USER
