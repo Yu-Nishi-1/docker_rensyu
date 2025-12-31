@@ -33,6 +33,7 @@
 $ docker build -t php-sample ./container/Dockerfile .
 $ docker run --rm --name php-sample-c php-sample whoami
 $ docker run -itd -p 8080:80 --rm --name php-sample-c php-sample
+$ docker run -itd -p 8080:80 --rm --name php-sample-c -v $(pwd):/var/www/html php-sample
 ```
 # 実行結果確認
 ```
