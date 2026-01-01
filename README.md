@@ -47,5 +47,9 @@ $ docker exec -it php-sample bash
 
 # php結果参照先
 ```
+# 実行結果
+http://localhost:8080/
+
+# 基本文法
 http://localhost:8080/help/help.php でブラウザで実行結果確認可能。
 ```
