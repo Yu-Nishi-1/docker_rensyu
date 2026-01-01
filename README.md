@@ -7,7 +7,7 @@
 
 # 構成
 ```
-.
+docker_rensyu
 ├── README.md
 ├── ecs-rensyu　ほぼ使ってない。
 │   ├── Dockerfile
