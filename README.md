@@ -67,6 +67,9 @@ $ docker exec -it php-web-app-db-1 bash
 
 # php結果参照先
 ```
+# 作業場所
+$ cd ./php-web-app
+
 # 実行結果
 http://localhost:8080/
 
